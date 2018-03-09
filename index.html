@@ -1,12 +1,21 @@
 <html>
     <head>
-        
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
+            function getDateTime(){
+                var now = new Date();
+                var d = now.toLocaleDateString();
+                var t = now.toLocaleTimeString();
+                document.getElementById("date").innerHTML = d;
+                var t2 = t.substr(0,5);
+                document.getElementById("time").innerHTML = t2;
+
+            }
         </script>
         <style>
         </style>
@@ -40,10 +49,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-5">
-                    <h3>Column 1</h3>
-                    <p>Lorem ipsum dolor..</p>
-                    <p>Ut enim ad..</p>
+                <div class="col-sm-5" onload="getDateTime()">
+                    <h3>Time & Date</h3>
+                    <p id="date">Lorem ipsum dolor...</p>
+                    <p id="time">Ut enim ad..</p>
                 </div>
                 <div class="col-sm-4">
                     <h3>Column 2</h3>
@@ -57,5 +66,6 @@
                 </div>
             </div>
         </div>
+        <script>getDateTime();</script>
     </body>
 </html>
