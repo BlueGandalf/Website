@@ -7,24 +7,74 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
+            function start(){
+                // Get the input field
+                var input = document.getElementById("mins");
+
+                // Execute a function when the user releases a key on the keyboard
+                input.addEventListener("keyup", function(event) {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    // Number 13 is the "Enter" key on the keyboard
+                    if (event.keyCode === 13) {
+                        // Trigger the button element with a click
+                        document.getElementById("timerBtn").click();
+                    }
+                });
+            }
+
             function getDateTime(){
                 var now = new Date();
                 var d = now.toLocaleDateString();
                 var t = now.toLocaleTimeString();
                 document.getElementById("date").innerHTML = d;
-                var t2 = t.substr(0,5);
-                document.getElementById("time").innerHTML = t2;
+                document.getElementById("time").innerHTML = t;
+                setTimeout(getDateTime, 1000);
+            }
 
+            function countdown(){
+                document.getElementById('timerForm').className = "none";
+                document.getElementById('countdown').className = "";
+
+
+                var now = new Date();
+                var diff = document.getElementById('mins').value;//minutes
+                var newDateObj = new Date(now.getTime() + diff*60000);
+                var x = setInterval(function() {
+                    now = new Date();
+                    // Find the distance between now an the count down date
+                    var distance = newDateObj.getTime() - now.getTime();
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    document.getElementById("tim").innerHTML = hours + "h "
+                        + minutes + "m " + seconds + "s ";
+
+                    // If the count down is finished, write some text 
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("tim").innerHTML = "EXPIRED";
+                        document.getElementById('timerForm').className = "";
+                        document.getElementById('countdown').className = "none";
+                    }
+                }, 1000);
             }
         </script>
         <style>
+            .none{
+                display: none;
+            }
         </style>
     </head>
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#home">WebSiteName</a>
+                    <a class="navbar-brand" href="#home">Peter's Pad</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
@@ -49,23 +99,35 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-5" onload="getDateTime()">
+                <div class="col-sm-2" onload="getDateTime()">
                     <h3>Time & Date</h3>
                     <p id="date">Lorem ipsum dolor...</p>
                     <p id="time">Ut enim ad..</p>
                 </div>
-                <div class="col-sm-4">
-                    <h3>Column 2</h3>
-                    <p>Lorem ipsum dolor..</p>
-                    <p>Ut enim ad..</p>
+                <div class="col-sm-2">
+                    <h3>Timer</h3>
+                    <div id="countdown" class="none">
+                        <p id="tim">Lorem ipsum dolor..</p>
+                    </div>
+                    <div id="timerForm">
+                        <input type='text' id='mins'>
+                        <button id='timerBtn' value='Submit' onclick='countdown()'></button>
+                        <p>Ut enim ad..</p>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <h3>Column 3</h3> 
-                    <p>Lorem ipsum dolor..</p>
-                    <p>Ut enim ad..</p>
+                <div class="col-sm-4">
+                    <h3>Discord</h3> 
+                    <iframe src="https://discordapp.com/widget?id=240802155290689536&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>                    <p>Ut enim ad..</p>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Spotify</h3> 
+                    <iframe src="https://open.spotify.com/embed/user/bluegandalf/playlist/0Ivq6GxQrk1szMAB44kp3v" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
                 </div>
             </div>
         </div>
-        <script>getDateTime();</script>
+        <script>
+            start();
+            getDateTime();
+        </script>
     </body>
 </html>
