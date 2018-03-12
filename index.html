@@ -56,6 +56,7 @@
 
                     // If the count down is finished, write some text 
                     if (distance < 0) {
+                        alert('Timer is up.');
                         clearInterval(x);
                         document.getElementById("tim").innerHTML = "EXPIRED";
                         document.getElementById('timerForm').className = "";
@@ -68,6 +69,15 @@
             .none{
                 display: none;
             }
+
+            .bg-1{
+                background-color: RGB(80,180,250);
+                height: 100%;
+            }
+
+            .bg-2{
+                background-color: RGB(50,130,200);
+            }
         </style>
     </head>
     <body>
@@ -78,50 +88,73 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                    <li><a data-toggle="tab" href="#spotify">Spotify</a></li>
+                    <li><a data-toggle="tab" href="#discord">Discord</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="tab" href="#"><span id="date">Lorem ipsum dolor...</span>
+                        <span id="time">Ut enim ad..</span></a></li>
                 </ul>
             </div>
         </nav>
         <div class="container-fluid">
-            <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Some content.</p>
+            <div class="tab-content row">
+                <div id="home" class="tab-pane fade in active col-sm-10 text-center">
+                    <h3><b>HOME</b></h3>
+                    <hr>
+                    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=96hmpp8t0rjkq4mikvnm4ge07g%40group.calendar.google.com&amp;color=%23182C57&amp;ctz=Europe%2FLondon" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Some content in menu 1.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Some content in menu 2.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2" onload="getDateTime()">
-                    <h3>Time & Date</h3>
-                    <p id="date">Lorem ipsum dolor...</p>
-                    <p id="time">Ut enim ad..</p>
-                </div>
-                <div class="col-sm-2">
-                    <h3>Timer</h3>
-                    <div id="countdown" class="none">
-                        <p id="tim">Lorem ipsum dolor..</p>
-                    </div>
-                    <div id="timerForm">
-                        <input type='text' id='mins'>
-                        <button id='timerBtn' value='Submit' onclick='countdown()'></button>
-                        <p>Ut enim ad..</p>
+                <div id="spotify" class="tab-pane fade col-sm-10 text-center">
+                    <h3><b>Spotify</b></h3>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-sm-4'>
+                            <h3>Soundtracks</h3> 
+                            <iframe src="https://open.spotify.com/embed/user/bluegandalf/playlist/0Ivq6GxQrk1szMAB44kp3v" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                        </div>
+                        <div class='col-sm-4'>
+                            <h3>80s</h3> 
+                            <iframe src="https://open.spotify.com/embed/user/myplay.com/playlist/19PgP2QSGPcm6Ve8VhbtpG" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>                        </div>
+                        <div class='col-sm-4'>
+                            <h3>Epic</h3> 
+                            <iframe src="https://open.spotify.com/embed/user/ruhin94/playlist/0bG1EMQkukEeO7vvcQQQYU" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <h3>Discord</h3> 
-                    <iframe src="https://discordapp.com/widget?id=240802155290689536&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>                    <p>Ut enim ad..</p>
+                <div id="discord" class="tab-pane fade col-sm-10 text-center">
+                    <h3><b>Discord</b></h3>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-sm-4'>
+                            <h3>Office Chair Racers</h3> 
+                            <iframe src="https://discordapp.com/widget?id=240802155290689536&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+                        </div>
+                        <div class='col-sm-4'>
+                            <h3>LSUCS/LSUVGS</h3> 
+                            <iframe src="https://discordapp.com/widget?id=107788078675931136&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+                        </div>
+                        <div class='col-sm-4'>
+                            <h3>The Cave</h3> 
+                            <iframe src="https://discordapp.com/widget?id=275048446770020352&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <h3>Spotify</h3> 
-                    <iframe src="https://open.spotify.com/embed/user/bluegandalf/playlist/0Ivq6GxQrk1szMAB44kp3v" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                <div id='timer' class='col-sm-2 text-center'>
+                    <div class='panel panel-default'>
+                        <div class='panel-body panel-right'>
+                            <div class='row'>
+                                <div class='col-sm-3'>
+                                    <div id="countdown" class="none">
+                                        <p id="tim"></p>
+                                    </div>
+                                    <div id="timerForm">
+                                        <input type='text' id='mins'>
+                                        <button id='timerBtn' onclick='countdown()'>Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
